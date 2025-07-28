@@ -27,7 +27,6 @@ async function connectToDatabase() {
     global.mongoose.promise = null;
     throw error;
   }
-  console.log(global.mongoose.conn)
   return global.mongoose.conn;
 }
 

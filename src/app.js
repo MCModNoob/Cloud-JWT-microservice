@@ -19,6 +19,13 @@ connectToDatabase().then((db) => {
   app.use('/api', healthRoutes);
   app.use('/api/protected', protectedRoutes);
 
+  app.use('*', (req, res) => {
+    res.status(404).json({
+      success: false,
+      message: `Route ${req.originalUrl} not found`
+    });
+  });
+
   app.use((error, req, res, next) => {
     res.status(500).json({ error: 'Something went wrong!' });
   });
